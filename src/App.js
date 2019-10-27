@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import User from './components/user/User';
 
 function App({appState}) {
   return (
     <section>
-      <h1>Redux Observable</h1>
-      <p>{appState.name}</p>
+      <h1>{appState.title}</h1>
+      <User />
     </section>
   );
 }
