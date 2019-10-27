@@ -1,9 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-function App() {
+function App({appState}) {
   return (
-    <h1>Redux Observable</h1>
+    <section>
+      <h1>Redux Observable</h1>
+      <p>{appState.name}</p>
+    </section>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return { appState: state.app }
+}
+
+export default connect(mapStateToProps)(App);
