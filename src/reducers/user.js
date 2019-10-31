@@ -1,8 +1,8 @@
-import {FETCH_USER_SUCCESS} from '../actions/user';
+import {FETCH_USER_SUCCESS, USER_STATUSES, FETCH_USER_START} from '../actions/user';
 
 const initState = {
   data: {},
-  loading: true
+  status: USER_STATUSES.init // init | pending | success | error
 };
 
 export function userReducer(state = initState, action){
@@ -11,8 +11,13 @@ export function userReducer(state = initState, action){
     case FETCH_USER_SUCCESS:
       return {
         ...state,
-        loading: false,
+        status: USER_STATUSES.success,
         data: payload
+      }
+    case FETCH_USER_START:
+      return {
+        ...state,
+        status: USER_STATUSES.pending
       }
     default:
       return state;

@@ -1,8 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {USER_STATUSES, runFecthUserAC} from '../../actions/user';
 
-const User = ({loading, user}) => {
-  if (loading) return 'LOADING...';
+const User = ({status, user, runFecthUserAC}) => {
+  if (status === USER_STATUSES.init) {
+    runFecthUserAC();
+    return null;
+  }
+  if (status === USER_STATUSES.pending) return 'LOADING...';
+  if (status === USER_STATUSES.error) return 'Error';
   return (
     <ul>
       <li>Name: {user.name}</li>
@@ -15,8 +21,8 @@ const User = ({loading, user}) => {
 function mapStateToProps(state) {
   return {
     user: state.user.data,
-    loading: state.user.laoding,
+    status: state.user.status,
   }
 }
 
-export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps, {runFecthUserAC})(User);
