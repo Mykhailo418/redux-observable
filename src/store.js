@@ -3,19 +3,22 @@ import {combineEpics, createEpicMiddleware} from 'redux-observable';
 
 // Epics
 import {fetchUser} from './epics/fetchUser';
+import {fetchPosts} from './epics/fetchPosts';
 
 // Reducers
 import {appReducer} from './reducers/app';
 import {userReducer} from './reducers/user';
+import {postsReducer} from './reducers/posts';
 
 // Epics Setup
-const rootEpic = combineEpics(fetchUser);
+const rootEpic = combineEpics(fetchUser, fetchPosts);
 const epicMiddleware = createEpicMiddleware();
 
 // Reducers Setup
 const rootReducer = combineReducers({
   app: appReducer,
-  user: userReducer
+  user: userReducer,
+  posts: postsReducer
 });
 
 // For dev tools
