@@ -1,5 +1,6 @@
 export const FETCH_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const FETCH_USER_START = 'GET_USER_START';
+export const FETCH_USER_ERROR = 'GET_USER_ERROR';
 export const FETCH_USER = 'FETCH_USER';
 export const USER_STATUSES = {
   init: 'init',
@@ -19,4 +20,8 @@ export const fecthUserSuccessAC = (user) => ({
 
 export const fecthUserStartAC = () => ({
     type: FETCH_USER_START,
+});
+
+export const fecthUserErrorAC = () => ({
+    type: FETCH_USER_ERROR,
 });
