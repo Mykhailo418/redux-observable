@@ -1,7 +1,7 @@
-import {FETCH_POSTS_SUCCESS, FETCH_POSTS_START, FETCH_POSTS_ERROR} from '../actions/posts';
+import {FETCH_POSTS_SUCCESS, FETCH_POSTS_START, FETCH_POSTS_ERROR, CANCEL_FETCH_POSTS} from '../actions/posts';
 
 const initState = {
-  data: {},
+  data: [],
   loading: null
 };
 
@@ -23,9 +23,14 @@ export function postsReducer(state = initState, action){
       return {
         ...state,
         loading: false,
-        data: null
+        data: []
       };
-    default:
-      return state;
+    case CANCEL_FETCH_POSTS:
+      return {
+        ...state,
+        data: [],
+        loading: false
+      };
+    default: return state;
   }
 }

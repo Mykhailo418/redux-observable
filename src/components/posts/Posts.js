@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {runFecthPostsAC} from '../../actions/posts';
+import {runFecthPostsAC as runFecth, cancelFecthPostsAC as cancelFecth} from '../../actions/posts';
 
 const columnsNumber = 3;
 
-const Posts = ({loading, posts, runFecthPostsAC}) => {
+const Posts = ({loading, posts, runFecth, cancelFecth}) => {
   const [searchValue, setSearch] = useState('');
 
-  if (loading == null) runFecthPostsAC();
-  if (loading == null || posts == null)  return null;
-  if (loading) return 'LOADING...';
+  if (loading == null) runFecth();
   return (
     <div>
       <input type="text" value={searchValue} onChange={onSearch} placeholder="Search" />
+      <button className="btn btn-success" disabled={loading} onClick={runFecth}>Refetch</button>
+      <button className="btn btn-danger" disabled={!loading} onClick={cancelFecth}>Cancel Fetch</button>
       <br />
       <div className="row">
-        {outputPosts(posts)}
+        {(loading) ? 'LOADING...' : outputPosts(posts)}
       </div>
     </div>
   );
@@ -43,4 +43,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {runFecthPostsAC})(Posts);
+export default connect(mapStateToProps, {runFecth, cancelFecth})(Posts);

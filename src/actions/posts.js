@@ -1,10 +1,15 @@
 export const FETCH_POSTS = 'FETCH_POSTS';
+export const CANCEL_FETCH_POSTS = 'CANCEL_FETCH_POSTS';
 export const FETCH_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const FETCH_POSTS_START = 'GET_POSTS_START';
 export const FETCH_POSTS_ERROR = 'GET_POSTS_ERROR';
 
 export const runFecthPostsAC = () => ({
     type: FETCH_POSTS,
+});
+
+export const cancelFecthPostsAC = () => ({
+    type: CANCEL_FETCH_POSTS
 });
 
 export const fecthPostsStartAC = () => ({
